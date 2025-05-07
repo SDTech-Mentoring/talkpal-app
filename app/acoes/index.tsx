@@ -23,6 +23,22 @@ const acoes: Acao[] = [
   { nome: 'DESENHAR', imagem: require('../../assets/images/action/desenhar.png') },
   { nome: 'ESCREVER', imagem: require('../../assets/images/action/escrever.png') },
   { nome: 'ESTUDAR', imagem: require('../../assets/images/action/estudar.png') },
+  { nome: 'GUARDAR', imagem: require('../../assets/images/action/guardar.png') },
+  { nome: 'LER', imagem: require('../../assets/images/action/ler.png') },
+  { nome: 'LEVANTAR', imagem: require('../../assets/images/action/levantar.png') },
+  { nome: 'NADAR', imagem: require('../../assets/images/action/nadar.png') },
+  { nome: 'NÃO QUERO', imagem: require('../../assets/images/action/naoquero.png') },
+  { nome: 'OUVIR', imagem: require('../../assets/images/action/ouvir.png') },
+  { nome: 'PEGAR', imagem: require('../../assets/images/action/pegar.png') },
+  { nome: 'PINTAR', imagem: require('../../assets/images/action/pintar.png') },
+  { nome: 'PINTAR À MÃO', imagem: require('../../assets/images/action/pintarMao.png') },
+  { nome: 'QUERO', imagem: require('../../assets/images/action/quero.png') },
+  { nome: 'QUERO MAIS', imagem: require('../../assets/images/action/queromais.png') },
+  { nome: 'RASGAR', imagem: require('../../assets/images/action/rasgar.png') },
+  { nome: 'RECORTAR', imagem: require('../../assets/images/action/recortar.png') },
+  { nome: 'SENTAR', imagem: require('../../assets/images/action/sentar.png') },
+  { nome: 'SORRIR', imagem: require('../../assets/images/action/sorrir.png') },
+  { nome: 'VER', imagem: require('../../assets/images/action/ver.png') }
 
 
 
@@ -41,6 +57,8 @@ export default function Acoes() {
   };
 
   return (
+
+
     <View style={styles.container}>
       <FlatList
         data={acoes}
