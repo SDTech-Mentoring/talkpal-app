@@ -6,6 +6,8 @@ type Acao = {
   imagem: any;
 };
 
+
+
 const acoes: Acao[] = [
   { nome: 'AMASSAR', imagem: require('../../assets/images/action/amassar.png') },
   { nome: 'ANDAR', imagem: require('../../assets/images/action/andar.png') },
