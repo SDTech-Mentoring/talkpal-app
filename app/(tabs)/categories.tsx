@@ -48,6 +48,11 @@ const CategoriesScreen: React.FC = () => {
              setTimeout(() => {
                router.push('/acoes');
              }, 1000); // Aguarda 1 segundo antes de navegar
+           } else if(cat.nome==='ALIMENTOS'){
+            falarTexto(cat.nome);
+            setTimeout(()=>{
+              router.push('/foods');
+            }, 1000);
            } else {
              falarTexto(cat.nome);
            }
