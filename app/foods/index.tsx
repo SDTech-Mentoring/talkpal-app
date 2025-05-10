@@ -1,21 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as Speech from 'expo-speech';
-
-interface FoodItem {
-  nome: string;
-  imagem: any;
-}
-
-const alimentos: FoodItem[] = [
-  { nome: 'ACELGA', imagem: require('../../assets/images/foods/acelga.png') },
-  // { nome: 'Feijão', imagem: require('../../assets/images/foods/feijao.png') },
-  // { nome: 'Fruta', imagem: require('../../assets/images/foods/fruta.png') },
-  // { nome: 'Suco', imagem: require('../../assets/images/foods/suco.png') },
-  // { nome: 'Pão', imagem: require('../../assets/images/foods/pao.png') },
-  // { nome: 'Leite', imagem: require('../../assets/images/foods/leite.png') },
-  // Adicione mais alimentos conforme necessário
-];
+import { alimentos } from '../foods/foodsData'; // <-- aqui você importa os dados de alimentos
 
 const FoodsScreen: React.FC = () => {
   const falar = (texto: string) => {

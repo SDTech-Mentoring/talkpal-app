@@ -1,0 +1,6 @@
+Branch: feature/pagina-alimentos
+Commit: Implementa página de alimentos com imagens e fala
+Data: [coloque a data de hoje]
+
+Descrição:
+Página de alimentos com cards, imagens e leitura em voz alta usando expo-speech.
