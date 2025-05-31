@@ -1,6 +1,12 @@
 Branch: feature/pagina-alimentos
 Commit: Implementa página de alimentos com imagens e fala
-Data: [coloque a data de hoje]
+Data: [10/05/2025]
 
 Descrição:
 Página de alimentos com cards, imagens e leitura em voz alta usando expo-speech.
+
+
+
+Branch: feature/frase-barra
+Objetivo: Criar uma barra na tela com a frase correspondente ao card selecionado.
+

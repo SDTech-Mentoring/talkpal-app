@@ -1,9 +1,15 @@
+// talkPal/app/foods/index.tsx
+
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import * as Speech from 'expo-speech';
-import { alimentos } from '../foods/foodsData'; // <-- aqui você importa os dados de alimentos
+import { alimentos } from './foodsData';
+import { usePhraseStore } from '../../store/phraseStore';
+import FraseBarra from '@/components/FraseBarra'; // ✅ Importando a barra com Falar e Apagar
 
 const FoodsScreen: React.FC = () => {
+  const { addWord } = usePhraseStore();
+
   const falar = (texto: string) => {
     Speech.speak(texto, {
       language: 'pt-BR',
@@ -14,12 +20,18 @@ const FoodsScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      {/* ✅ Barra de Frase com Falar e Apagar */}
+      <FraseBarra />
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {alimentos.map((item, index) => (
           <TouchableOpacity
             key={index}
             style={styles.card}
-            onPress={() => falar(item.nome)}
+            onPress={() => {
+              addWord(item.nome);
+              falar(item.nome);
+            }}
           >
             <Image source={item.imagem} style={styles.image} />
             <Text style={styles.label}>{item.nome}</Text>
@@ -35,41 +47,32 @@ export default FoodsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 16,
     backgroundColor: '#fff',
   },
   scrollContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    paddingVertical: 20,
   },
   card: {
-    width: 150,
-    height: 150,
-    backgroundColor: '#f2f2f2',
-    margin: 10,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    width: 120,
+    height: 140,
+    backgroundColor: '#f0f0f0',
+    margin: 8,
     borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
   },
   image: {
     width: 80,
     height: 80,
     resizeMode: 'contain',
+    marginBottom: 8,
   },
   label: {
-    marginTop: 8,
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 14,
     textAlign: 'center',
   },
 });

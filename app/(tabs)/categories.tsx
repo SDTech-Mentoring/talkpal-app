@@ -1,8 +1,10 @@
-
+//talkpal/app/(tabs)/categories.tsx
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as Speech from 'expo-speech';
 import { useRouter } from 'expo-router';
+import { usePhraseStore } from '../store/phraseStore';
+import FraseBarra from '@/components/FraseBarra'; // ✅ Importado
 
 interface Categoria {
   nome: string;
@@ -24,6 +26,7 @@ const categorias: Categoria[] = [
 
 const CategoriesScreen: React.FC = () => {
   const router = useRouter();
+  const { addWord, phrase } = usePhraseStore();
 
   const falarTexto = (texto: string) => {
     if (typeof texto === 'string') {
@@ -35,28 +38,42 @@ const CategoriesScreen: React.FC = () => {
     }
   };
 
+  const handleCategoryClick = (catNome: string, nextRoute: string) => {
+    if (catNome === 'EU') {
+      addWord(catNome);
+    }
+    falarTexto(catNome);
+    setTimeout(() => {
+      router.push(nextRoute);
+    }, 1000);
+  };
+
   return (
     <View style={styles.container}>
+      {/* ✅ Frase completa com botão de falar e apagar */}
+      <FraseBarra />
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {categorias.map((cat, index) => (
-         <TouchableOpacity
-         key={index}
-         style={styles.card}
-         onPress={() => {
-           if (cat.nome === 'AÇÕES') {
-             falarTexto(cat.nome);
-             setTimeout(() => {
-               router.push('/acoes');
-             }, 1000); // Aguarda 1 segundo antes de navegar
-           } else if(cat.nome==='ALIMENTOS'){
-            falarTexto(cat.nome);
-            setTimeout(()=>{
-              router.push('/foods');
-            }, 1000);
-           } else {
-             falarTexto(cat.nome);
-           }
-         }}
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() => {
+              if (cat.nome === 'AÇÕES') {
+                handleCategoryClick(cat.nome, '/acoes');
+              } else if (cat.nome === 'ALIMENTOS') {
+                handleCategoryClick(cat.nome, '/foods');
+              } else if (cat.nome === 'ESCOLA'){
+                handleCategoryClick(cat.nome, '/school')
+              } else if (cat.nome === 'SENTIMENTOS') {
+                handleCategoryClick(cat.nome, '/sentimentos');
+              } else if (cat.nome === 'EU') {
+                addWord(cat.nome);
+                falarTexto(cat.nome);
+              } else {
+              handleCategoryClick(cat.nome, '/'); // Caminho relativo, ideal no seu caso
+              }
+            }}
           >
             <Image source={cat.imagem} style={styles.image} />
             <Text style={styles.label}>{cat.nome}</Text>
