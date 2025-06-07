@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import * as Speech from 'expo-speech';
 import { usePhraseStore } from '../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
+import BackToSchoolButton from '@/components/BackToSchoolButton';//1. Importação do botão reutilizável
 
 const routineItems = [
   { nome: 'AULA DE CIÊNCIAS SOCIAIS', imagem: require('@/assets/images/schoolRoutine/aulaDeCienciasSociais.png') },
@@ -30,6 +31,8 @@ const RoutineScreen = () => {
   return (
     <View style={styles.container}>
       <FraseBarra />
+      <BackToSchoolButton />{/* 2. Botão adicionado para voltar à tela /school */}
+
       <Text style={styles.titulo}>ROTINA ESCOLAR</Text>
 
       <ScrollView contentContainerStyle={styles.scroll}>

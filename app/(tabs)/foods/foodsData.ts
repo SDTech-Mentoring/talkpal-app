@@ -5,7 +5,7 @@ export interface FoodItem {
   imagem: any;
 }
 
-export const alimentos: FoodItem[] = [
+export const alimentosOriginal: FoodItem[] = [
   { nome: 'Alface', imagem: require('../../../assets/images/foods/alface.png') },
   { nome: 'Arroz', imagem: require('../../../assets/images/foods/arroz.png') },
   { nome: 'Arroz com Feijão', imagem: require('../../../assets/images/foods/arrozComFeijao.png') },
@@ -52,3 +52,12 @@ export const alimentos: FoodItem[] = [
   { nome: 'Tomate', imagem: require('../../../assets/images/foods/tomate.png') },
   { nome: 'Uvas', imagem: require('../../../assets/images/foods/uvas.png') },
 ];
+// Função para converter nomes para maiúsculas
+export const converterNomesParaMaiusculas = (lista: FoodItem[]): FoodItem[] => {
+  return lista.map(item => ({
+    ...item,
+    nome: item.nome.toUpperCase(),
+  }));
+};
+// Exportando a lista já convertida
+export const alimentos = converterNomesParaMaiusculas(alimentosOriginal);

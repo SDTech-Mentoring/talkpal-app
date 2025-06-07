@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as Speech from 'expo-speech';
-import { useRouter } from 'expo-router';
+import { useRouter} from 'expo-router';
 import { usePhraseStore } from '../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra'; // ✅ Importado
 
@@ -11,13 +11,28 @@ interface Categoria {
   imagem: any;
 }
 
+// Definindo as rotas válidas do app
+type Routes =
+  | '/acoes'
+  | '/foods'
+  | '/school'
+  | '/sentimentos'
+  | '/feelings'
+  | '/'
+  | '/categories'
+  | '/toysGames' // ✅ Incluír essa rota
+  | '/places/'
+  | 'houseRoutine'
+  |'/dessert';
+
+
 const categorias: Categoria[] = [
   { nome: 'EU', imagem: require('../../assets/images/category/eu.png') },
-  { nome: 'EU', imagem: require('../../assets/images/category/eu(1).png') },
+  { nome: 'EU', imagem: require('../../assets/images/category/eu_um.png') },
   { nome: 'AÇÕES', imagem: require('../../assets/images/category/acoes.png') },
   { nome: 'ALIMENTOS', imagem: require('../../assets/images/category/alimentos.png') },
   { nome: 'ESCOLA', imagem: require('../../assets/images/category/escola.png') },
-  { nome: 'JOGOS e BRINQUEDOS', imagem: require('../../assets/images/category/jogosBrinquedos.png') },
+  { nome: 'JOGOS e BRINQUEDOS', imagem: require('../../assets/images/category/jogos_brinquedos.png') },
   { nome: 'LUGARES', imagem: require('../../assets/images/category/lugares.png') },
   { nome: 'ROTINAS CASA', imagem: require('../../assets/images/category/rotinasCasa.png') },
   { nome: 'SENTIMENTOS', imagem: require('../../assets/images/category/sentimentos.png') },
@@ -44,7 +59,7 @@ const CategoriesScreen: React.FC = () => {
     }
     falarTexto(catNome);
     setTimeout(() => {
-      router.push(nextRoute);
+      router.push(nextRoute as any)    ;
     }, 1000);
   };
 
@@ -66,8 +81,16 @@ const CategoriesScreen: React.FC = () => {
               } else if (cat.nome === 'ESCOLA'){
                 handleCategoryClick(cat.nome, '/school')
               } else if (cat.nome === 'SENTIMENTOS') {
-                handleCategoryClick(cat.nome, '/sentimentos');
-              } else if (cat.nome === 'EU') {
+                handleCategoryClick(cat.nome, '/feelings');
+              } else if(cat.nome==='JOGOS e BRINQUEDOS'){
+                handleCategoryClick(cat.nome, '/toysGames'); // ✅ Aqui está o bloco que você pediu
+              }else if(cat.nome==='LUGARES'){
+              handleCategoryClick(cat.nome,'/places/');
+              } else if(cat.nome==='ROTINAS CASA'){
+                handleCategoryClick(cat.nome,'/houseRoutine');
+              } else if(cat.nome==='SOBREMESA'){
+                handleCategoryClick(cat.nome,'/dessert');
+              }else if (cat.nome === 'EU') {
                 addWord(cat.nome);
                 falarTexto(cat.nome);
               } else {

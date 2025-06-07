@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import * as Speech from 'expo-speech';
 import { usePhraseStore } from '../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
+import BackToSchoolButton from '@/components/BackToSchoolButton';//importação do botão reutilizavel
 
 const spaceItems = [
   { nome: 'BANHEIRO', imagem: require('@/assets/images/schoolSpace/banheiro.png') },
@@ -12,7 +13,7 @@ const spaceItems = [
   { nome: 'BANHEIRO ', imagem: require('@/assets/images/schoolSpace/banheiroParaDeficientes.png') },
   { nome: 'BIBLIOTECA', imagem: require('@/assets/images/schoolSpace/biblioteca.png') },
   { nome: 'QUADRA', imagem: require('@/assets/images/schoolSpace/quadra.png') },
-  { nome: 'REFEITORIO', imagem: require('@/assets/images/schoolSpace/refeitorio.png') },
+  { nome: 'REFEITÓRIO', imagem: require('@/assets/images/schoolSpace/refeitorio.png') },
   { nome: 'SALA DE AULA', imagem: require('@/assets/images/schoolSpace/salaDeAula.png') },
   { nome: 'SALA DOS PROFESSORES', imagem: require('@/assets/images/schoolSpace/salaDosProfessores.png') },
 ];
@@ -28,6 +29,7 @@ const SpaceScreen = () => {
   return (
     <View style={styles.container}>
       <FraseBarra />
+        <BackToSchoolButton />{/* 2. Botão adicionado para voltar à tela /school */}
       <Text style={styles.titulo}>ESPAÇOS DA ESCOLA</Text>
 
       <ScrollView contentContainerStyle={styles.scroll}>

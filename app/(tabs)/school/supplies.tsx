@@ -6,6 +6,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import * as Speech from 'expo-speech';
 import { usePhraseStore } from '../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
+import BackToSchoolButton from '@/components/BackToSchoolButton';//1. Importação do botão reutilizável
+
 
 const suppliesItems = [
   { nome: 'APONTADOR', imagem: require('@/assets/images/schoolSupplies/apontador.png') },
@@ -18,7 +20,7 @@ const suppliesItems = [
   { nome: 'LÁPIS', imagem: require('@/assets/images/schoolSupplies/lapis.png') },
   { nome: 'LÁPIS COLORIDO', imagem: require('@/assets/images/schoolSupplies/lapisColorido.png') },
   { nome: 'LIVRO', imagem: require('@/assets/images/schoolSupplies/livro.png') },
- ,{ nome: 'RÉGUA', imagem: require('@/assets/images/schoolSupplies/regua.png') },
+  { nome: 'RÉGUA', imagem: require('@/assets/images/schoolSupplies/regua.png') },
   { nome: 'TESOURA', imagem: require('@/assets/images/schoolSupplies/tesoura.png') },
 
 
@@ -36,6 +38,7 @@ const SuppliesScreen = () => {
   return (
     <View style={styles.container}>
       <FraseBarra />
+      <BackToSchoolButton /> {/* 2. Botão adicionado para voltar à tela /school */}
       <Text style={styles.titulo}>MATERIAL ESCOLAR</Text>
 
       <ScrollView contentContainerStyle={styles.scroll}>
