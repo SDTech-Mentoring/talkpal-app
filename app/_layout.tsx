@@ -1,4 +1,5 @@
 // talkpal/app/_layout.tsx
+// talkpal/app/_layout.tsx
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -6,9 +7,8 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-
 import { useColorScheme } from '@/components/useColorScheme';
-import { FraseProvider } from './context/FraseContext'; // ✅ Importado aqui
+import { FraseProvider } from './context/FraseContext'; // ✅ Contexto
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -16,6 +16,7 @@ export const unstable_settings = {
   initialRouteName: '(tabs)',
 };
 
+// Impede a splash screen de sumir automaticamente
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -38,7 +39,7 @@ export default function RootLayout() {
     return null;
   }
 
-  // ✅ Aqui colocamos o FraseProvider em volta
+  // ✅ Provider do contexto da frase
   return (
     <FraseProvider>
       <RootLayoutNav />
@@ -52,8 +53,19 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
+        {/* Página principal com abas ocultando o cabeçalho */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+
+        {/* Página modal com botão de voltar e sem título "modal" */}
+        <Stack.Screen
+          name="modal"
+          options={{
+            presentation: 'modal',
+            headerShown: true,
+            headerBackTitle: 'Voltar', // ✅ texto ao lado da seta
+            title: '', // ✅ remove a palavra "modal"
+          }}
+        />
       </Stack>
     </ThemeProvider>
   );

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
-import { usePhraseStore } from "@/app/store/phraseStore";
+import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
 
 type Acao = {

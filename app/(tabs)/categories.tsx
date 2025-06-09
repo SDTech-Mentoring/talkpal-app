@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as Speech from 'expo-speech';
 import { useRouter} from 'expo-router';
-import { usePhraseStore } from '../store/phraseStore';
+import { usePhraseStore } from '../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra'; // ✅ Importado
 
 interface Categoria {

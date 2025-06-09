@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Image, ScrollView, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import * as Speech from 'expo-speech';
 import { alimentos } from './foodsData';
-import { usePhraseStore } from '../../store/phraseStore';
+import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra'; // ✅ Importando a barra com Falar e Apagar
 
 const FoodsScreen: React.FC = () => {

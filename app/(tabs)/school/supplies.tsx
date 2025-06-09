@@ -4,7 +4,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import * as Speech from 'expo-speech';
-import { usePhraseStore } from '../../store/phraseStore';
+import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
 import BackToSchoolButton from '@/components/BackToSchoolButton';//1. Importação do botão reutilizável
 

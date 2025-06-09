@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as Speech from 'expo-speech';
-import { usePhraseStore } from '@/app/store/phraseStore';
+import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
 
 interface Item {

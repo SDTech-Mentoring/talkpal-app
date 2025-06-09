@@ -2,7 +2,7 @@
 // talkPal/components/FraseBarra.tsx
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { usePhraseStore } from '@/app/store/phraseStore';
+import { usePhraseStore } from '../store/phraseStore';
 import * as Speech from 'expo-speech';
 
 const FraseBarra = () => {
