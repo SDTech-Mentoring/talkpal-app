@@ -1,21 +1,38 @@
-
+//talkpal/app/(tabs)/categories.tsx
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as Speech from 'expo-speech';
-import { useRouter } from 'expo-router';
+import { useRouter} from 'expo-router';
+import { usePhraseStore } from '../../store/phraseStore';
+import FraseBarra from '@/components/FraseBarra'; // ✅ Importado
 
 interface Categoria {
   nome: string;
   imagem: any;
 }
 
+// Definindo as rotas válidas do app
+type Routes =
+  | '/acoes'
+  | '/foods'
+  | '/school'
+  | '/sentimentos'
+  | '/feelings'
+  | '/'
+  | '/categories'
+  | '/toysGames' // ✅ Incluír essa rota
+  | '/places/'
+  | 'houseRoutine'
+  |'/dessert';
+
+
 const categorias: Categoria[] = [
   { nome: 'EU', imagem: require('../../assets/images/category/eu.png') },
-  { nome: 'EU', imagem: require('../../assets/images/category/eu(1).png') },
+  { nome: 'EU', imagem: require('../../assets/images/category/eu_um.png') },
   { nome: 'AÇÕES', imagem: require('../../assets/images/category/acoes.png') },
   { nome: 'ALIMENTOS', imagem: require('../../assets/images/category/alimentos.png') },
   { nome: 'ESCOLA', imagem: require('../../assets/images/category/escola.png') },
-  { nome: 'JOGOS e BRINQUEDOS', imagem: require('../../assets/images/category/jogosBrinquedos.png') },
+  { nome: 'JOGOS e BRINQUEDOS', imagem: require('../../assets/images/category/jogos_brinquedos.png') },
   { nome: 'LUGARES', imagem: require('../../assets/images/category/lugares.png') },
   { nome: 'ROTINAS CASA', imagem: require('../../assets/images/category/rotinasCasa.png') },
   { nome: 'SENTIMENTOS', imagem: require('../../assets/images/category/sentimentos.png') },
@@ -24,6 +41,7 @@ const categorias: Categoria[] = [
 
 const CategoriesScreen: React.FC = () => {
   const router = useRouter();
+  const { addWord, phrase } = usePhraseStore();
 
   const falarTexto = (texto: string) => {
     if (typeof texto === 'string') {
@@ -35,23 +53,50 @@ const CategoriesScreen: React.FC = () => {
     }
   };
 
+  const handleCategoryClick = (catNome: string, nextRoute: string) => {
+    if (catNome === 'EU') {
+      addWord(catNome);
+    }
+    falarTexto(catNome);
+    setTimeout(() => {
+      router.push(nextRoute as any)    ;
+    }, 1000);
+  };
+
   return (
     <View style={styles.container}>
+      {/* ✅ Frase completa com botão de falar e apagar */}
+      <FraseBarra />
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {categorias.map((cat, index) => (
-         <TouchableOpacity
-         key={index}
-         style={styles.card}
-         onPress={() => {
-           if (cat.nome === 'AÇÕES') {
-             falarTexto(cat.nome);
-             setTimeout(() => {
-               router.push('/acoes');
-             }, 1000); // Aguarda 1 segundo antes de navegar
-           } else {
-             falarTexto(cat.nome);
-           }
-         }}
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() => {
+              if (cat.nome === 'AÇÕES') {
+                handleCategoryClick(cat.nome, '/acoes');
+              } else if (cat.nome === 'ALIMENTOS') {
+                handleCategoryClick(cat.nome, '/foods');
+              } else if (cat.nome === 'ESCOLA'){
+                handleCategoryClick(cat.nome, '/school')
+              } else if (cat.nome === 'SENTIMENTOS') {
+                handleCategoryClick(cat.nome, '/feelings');
+              } else if(cat.nome==='JOGOS e BRINQUEDOS'){
+                handleCategoryClick(cat.nome, '/toysGames'); // ✅ Aqui está o bloco que você pediu
+              }else if(cat.nome==='LUGARES'){
+              handleCategoryClick(cat.nome,'/places/');
+              } else if(cat.nome==='ROTINAS CASA'){
+                handleCategoryClick(cat.nome,'/houseRoutine');
+              } else if(cat.nome==='SOBREMESA'){
+                handleCategoryClick(cat.nome,'/dessert');
+              }else if (cat.nome === 'EU') {
+                addWord(cat.nome);
+                falarTexto(cat.nome);
+              } else {
+              handleCategoryClick(cat.nome, '/'); // Caminho relativo, ideal no seu caso
+              }
+            }}
           >
             <Image source={cat.imagem} style={styles.image} />
             <Text style={styles.label}>{cat.nome}</Text>
