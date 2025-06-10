@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'rea
 import * as Speech from 'expo-speech';
 import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
+import { useRouter } from 'expo-router';  // Importa o useRouter para navegação
 
 interface Item {
   nome: string;
@@ -51,6 +52,7 @@ const sobremesas: Item[] = [
 
 const DessertScreen: React.FC = () => {
   const { addWord } = usePhraseStore();
+  const router = useRouter(); // <-- adiciona essa linha aqui
 
   const falarTexto = (texto: string) => {
     if (typeof texto === 'string') {
@@ -65,7 +67,13 @@ const DessertScreen: React.FC = () => {
   const handleClick = (item: Item) => {
     addWord(item.nome);
     falarTexto(item.nome);
+      // Delay de 2 segundos antes de navegar para categories
+    setTimeout(() => {
+      router.push('/categories');
+    }, 2000);
+
   };
+
 
   return (
     <View style={styles.container}>
