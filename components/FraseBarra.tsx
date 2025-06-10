@@ -14,20 +14,27 @@ const FraseBarra = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{phrase.join(' ') || 'Frase vazia'}</Text>
+  <View style={styles.container}>
+    {phrase.length === 0 ? (
+      <Text style={[styles.text, styles.placeholder]}>
+        💬 ESCOLHA UM QUADRINHO
+      </Text>
+    ) : (
+      <Text style={styles.text}>{phrase.join(' ')}</Text>
+    )}
 
-      <View style={styles.buttons}>
-        <TouchableOpacity onPress={speakPhrase} style={styles.iconButton}>
-          <Text style={styles.icon}>🔊</Text>
-        </TouchableOpacity>
+    <View style={styles.buttons}>
+      <TouchableOpacity onPress={speakPhrase} style={styles.iconButton}>
+        <Text style={styles.icon}>🔊</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity onPress={clearPhrase} style={styles.iconButton}>
-          <Text style={styles.icon}>🗑️</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={clearPhrase} style={styles.iconButton}>
+        <Text style={styles.icon}>🗑️</Text>
+      </TouchableOpacity>
     </View>
-  );
+  </View>
+);
+
 };
 
 const styles = StyleSheet.create({
@@ -47,6 +54,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#333',
   },
+  placeholder: {
+    color: '#555',        // cor mais suave
+    fontStyle: 'italic',  // itálico para destacar que é instrução
+  },
   buttons: {
     flexDirection: 'row',
     marginLeft: 10,
@@ -63,5 +74,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
 
 export default FraseBarra;
