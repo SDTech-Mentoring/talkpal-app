@@ -1,26 +1,26 @@
 // talkPal/app/foods/index.tsx
-
 import React from 'react';
 import { View, Image, ScrollView, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import * as Speech from 'expo-speech';
+import { useRouter } from 'expo-router'; // usar useRouter do expo-router
 import { alimentos } from './foodsData';
 import { usePhraseStore } from '../../../store/phraseStore';
-import FraseBarra from '@/components/FraseBarra'; // ✅ Importando a barra com Falar e Apagar
+import FraseBarra from '@/components/FraseBarra';
 
 const FoodsScreen: React.FC = () => {
   const { addWord } = usePhraseStore();
+  const router = useRouter(); // router do expo-router
 
-  const falar = (texto: string) => {
-    Speech.speak(texto, {
-      language: 'pt-BR',
-      rate: 1.0,
-      pitch: 1.0,
-    });
+  const handlePress = (item: { nome: string }) => {
+    addWord(item.nome);
+    Speech.speak(item.nome, { language: 'pt-BR', rate: 1.0, pitch: 1.0 });
+// Espera 2 segundos (2000ms) antes de voltar para categories
+    setTimeout(() => {
+      router.push('/categories');
+    }, 2000);
   };
-
   return (
     <View style={styles.container}>
-      {/* ✅ Barra de Frase com Falar e Apagar */}
       <FraseBarra />
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -28,10 +28,7 @@ const FoodsScreen: React.FC = () => {
           <TouchableOpacity
             key={index}
             style={styles.card}
-            onPress={() => {
-              addWord(item.nome);
-              falar(item.nome);
-            }}
+            onPress={() => handlePress(item)}
           >
             <Image source={item.imagem} style={styles.image} />
             <Text style={styles.label}>{item.nome}</Text>
