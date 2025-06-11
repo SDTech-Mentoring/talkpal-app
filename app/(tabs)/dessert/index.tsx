@@ -11,7 +11,7 @@ interface Item {
   imagem: any;
 }
 
-const sobremesas: Item[] = [
+const sobremesasOriginais: Item[] = [
   { nome: 'Alfajor de Amêndoas', imagem: require('@/assets/images/dessert/alfajorAmendoas.png') },
   { nome: 'Bala de Coco', imagem: require('@/assets/images/dessert/balaCoco.png') },
   { nome: 'Bolachas', imagem: require('@/assets/images/dessert/bolachas.png') },
@@ -49,6 +49,17 @@ const sobremesas: Item[] = [
   { nome: 'Torta de Maçã', imagem: require('@/assets/images/dessert/tortaMaca.png') },
   { nome: 'Iogurte', imagem: require('@/assets/images/dessert/yogurte.png') },
 ];
+
+// 🔠 Função para converter nomes em maiúsculas
+const converterNomesParaMaiusculas = (lista: Item[]): Item[] => {
+  return lista.map(item => ({
+    ...item,
+    nome: item.nome.toUpperCase(),
+  }));
+};
+
+// Lista convertida
+const sobremesas: Item[] = converterNomesParaMaiusculas(sobremesasOriginais);
 
 const DessertScreen: React.FC = () => {
   const { addWord } = usePhraseStore();
