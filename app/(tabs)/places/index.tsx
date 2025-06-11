@@ -12,20 +12,20 @@ type Place = {
 };
 
 const lugares: Place[] = [
-  { nome: "Capela", imagem: require("../../../assets/images/places/capela.png") },
-  { nome: "Casa de Campo", imagem: require("../../../assets/images/places/casaCampo.png") },
-  { nome: "Chácara", imagem: require("../../../assets/images/places/chacara.png") },
-  { nome: "Cidade", imagem: require("../../../assets/images/places/cidade.png") },
-  { nome: "Cinema", imagem: require("../../../assets/images/places/cinema.png") },
-  { nome: "Hospital", imagem: require("../../../assets/images/places/hospital.png") },
-  { nome: "Montanha", imagem: require("../../../assets/images/places/montanha.png") },
-  { nome: "Museu", imagem: require("../../../assets/images/places/museu.png") },
-  { nome: "Padaria", imagem: require("../../../assets/images/places/padaria.png") },
-  { nome: "Parque", imagem: require("../../../assets/images/places/parque.png") },
-  { nome: "Praia", imagem: require("../../../assets/images/places/praia.png") },
-  { nome: "Restaurante", imagem: require("../../../assets/images/places/restaurante.png") },
-  { nome: "Shopping", imagem: require("../../../assets/images/places/shopping.png") },
-  { nome: "Zoológico", imagem: require("../../../assets/images/places/zoologico.png") },
+  { nome: "CAPELA", imagem: require("../../../assets/images/places/capela.png") },
+  { nome: "CASA DE CAMPO", imagem: require("../../../assets/images/places/casaCampo.png") },
+  { nome: "CHÁCARA", imagem: require("../../../assets/images/places/chacara.png") },
+  { nome: "CIDADE", imagem: require("../../../assets/images/places/cidade.png") },
+  { nome: "CINEMA", imagem: require("../../../assets/images/places/cinema.png") },
+  { nome: "HOSPITAL", imagem: require("../../../assets/images/places/hospital.png") },
+  { nome: "MONTANHA", imagem: require("../../../assets/images/places/montanha.png") },
+  { nome: "MUSEU", imagem: require("../../../assets/images/places/museu.png") },
+  { nome: "PADARIA", imagem: require("../../../assets/images/places/padaria.png") },
+  { nome: "PARQUE", imagem: require("../../../assets/images/places/parque.png") },
+  { nome: "PRAIA", imagem: require("../../../assets/images/places/praia.png") },
+  { nome: "RESTAURANTE", imagem: require("../../../assets/images/places/restaurante.png") },
+  { nome: "SHOPPING", imagem: require("../../../assets/images/places/shopping.png") },
+  { nome: "ZOOLÓGICO", imagem: require("../../../assets/images/places/zoologico.png") },
 ];
 
 export default function Places() {
