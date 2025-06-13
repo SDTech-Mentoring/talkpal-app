@@ -122,6 +122,72 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="th-large" color={color} />,
         }}
       />
+
+      <Tabs.Screen
+        name="dessert/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+
+
+      <Tabs.Screen
+        name="feelings/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+         <Tabs.Screen
+        name="houseRoutine/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+         <Tabs.Screen
+        name="places/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+       <Tabs.Screen
+        name="toysGames/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+      <Tabs.Screen
+        name="school/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+      <Tabs.Screen
+        name="foods/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+      <Tabs.Screen
+        name="acoes/index"
+        options={{
+          headerShown: false,
+          tabBarButton: () => null, //  Esconde o botão da tab
+        }}
+      />
+
+
+
+
+
     </Tabs>
+
+
   );
 }

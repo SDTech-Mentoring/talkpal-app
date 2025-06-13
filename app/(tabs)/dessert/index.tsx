@@ -73,11 +73,21 @@ const DessertScreen: React.FC = () => {
     }, 2000);
 
   };
+    // Função para voltar para categorias
+  const handleVoltarCategorias = () => {
+    router.push('/categories');
+  };
 
 
   return (
     <View style={styles.container}>
-      <FraseBarra />
+       {/* Botão Voltar para Categorias */}
+      <TouchableOpacity style={styles.voltarButton} onPress={handleVoltarCategorias}>
+        <Text style={styles.voltarButtonText}>← VOLTAR</Text>
+      </TouchableOpacity>
+
+
+     <FraseBarra fraseVazia="🍰 ESCOLHA UMA FIGURA" />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {sobremesas.map((item, index) => (
           <TouchableOpacity
@@ -101,6 +111,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+    voltarButton: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: '#eee',
+    margin: 10,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+  },
+  voltarButtonText: {
+  fontSize: 16,
+  color: '#333',
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
+},
   scrollContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
