@@ -5,8 +5,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { usePhraseStore } from '../store/phraseStore';
 import * as Speech from 'expo-speech';
 
-const FraseBarra = () => {
-  const { phrase, clearPhrase } = usePhraseStore();
+interface FraseBarraProps {
+  fraseVazia?: string; // 👈 nova prop opcional
+}
+
+const FraseBarra: React.FC<FraseBarraProps> = ({ fraseVazia }) => {
+  const { phrase, clearPhrase } = usePhraseStore();;
 
   const speakPhrase = () => {
     const phraseText = phrase.join(' ');
@@ -17,7 +21,7 @@ const FraseBarra = () => {
   <View style={styles.container}>
     {phrase.length === 0 ? (
       <Text style={[styles.text, styles.placeholder]}>
-        💬 ESCOLHA UM QUADRINHO
+       {fraseVazia || '💬 ESCOLHA UM QUADRINHO'}
       </Text>
     ) : (
       <Text style={styles.text}>{phrase.join(' ')}</Text>
