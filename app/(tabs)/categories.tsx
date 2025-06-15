@@ -65,6 +65,12 @@ const CategoriesScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+       {/* ✅ Botão Voltar */}
+    <View style={styles.header}>
+      <TouchableOpacity onPress={() => router.replace('/')}>
+        <Text style={styles.backText}>⬅ Voltar</Text>
+      </TouchableOpacity>
+    </View>
       {/* ✅ Frase completa com botão de falar e apagar */}
       <FraseBarra />
 
@@ -148,5 +154,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
+  },
+
+  // ✅ Adicione estes abaixo para resolver seu erro:
+  header: {
+    padding: 16,
+    backgroundColor: '#f0f0f0',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#007AFF',
+    marginLeft: 8,
   },
 });
