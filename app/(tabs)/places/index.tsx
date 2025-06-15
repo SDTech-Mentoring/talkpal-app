@@ -5,6 +5,7 @@ import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
 import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
+import BackButton from '../../../components/BackButton';
 
 type Place = {
   nome: string;
@@ -46,6 +47,7 @@ export default function Places() {
 
   return (
     <View style={styles.container}>
+      <BackButton />
       <FraseBarra />
       <FlatList
         data={lugares}

@@ -5,6 +5,11 @@ import * as Speech from 'expo-speech';
 import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
 import { useRouter } from 'expo-router';  // Importa o useRouter para navegação
+import BackButton from '@/components/BackButton'; //  Importado novo botão reutilizável
+
+export const options = {
+  headerShown: false,  // <-- Aqui, oculta o header automaticamente
+};
 
 interface Item {
   nome: string;
@@ -77,7 +82,11 @@ const DessertScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+         {/* ✅ Inserido o botão BackButton no topo da tela */}
+      <BackButton destino="/categories" />
+
       <FraseBarra />
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {sobremesas.map((item, index) => (
           <TouchableOpacity

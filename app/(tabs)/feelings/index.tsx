@@ -4,6 +4,7 @@ import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
 import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
+import BackButton from '../../../components/BackButton'; //aquiiiiiiiiiiiiiiiiiiiiii
 
 type Sentimento = {
   nome: string;
@@ -92,6 +93,8 @@ export default function Sentimentos() {
 
   return (
     <View style={styles.container}>
+        <BackButton />  {/* <<< COLOQUE AQUI aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/}
+
       <FraseBarra />
       <FlatList
         data={sentimentos}
