@@ -3,9 +3,9 @@
 // talkpal/app/(tabs)/_layout.tsx
 // talkPal/app/(tabs)/_layout.tsx
 // talkPal/app/(tabs)/_layout.tsx
-
 // talkPal/app/(tabs)/_layout.tsx
 
+// talkPal/app/(tabs)/_layout.tsx
 import React from "react";
 import { enableScreens } from "react-native-screens";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -20,10 +20,9 @@ import {
 } from "react-native";
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import BackButton from "../../components/BackButton";
 
-enableScreens(); // otimiza navegação para dispositivos móveis
+enableScreens();
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -59,6 +58,7 @@ function CustomHeader({ color }: { color: string }) {
       ]}
     >
       {showBackButton && <BackButton />}
+
       <View style={styles.header}>
         <Link href="/categories" asChild>
           <Pressable style={styles.left}>
@@ -66,7 +66,9 @@ function CustomHeader({ color }: { color: string }) {
             <Text style={[styles.title, { color }]}> Início</Text>
           </Pressable>
         </Link>
+
         <View style={styles.center} />
+
         <Link href="/modal" asChild>
           <Pressable style={styles.right}>
             {({ pressed }) => (
@@ -115,43 +117,36 @@ const styles = StyleSheet.create({
   },
 });
 
-// ← ATENÇÃO AQUI: CustomHeader será aplicado dinamicamente se a rota for "index"
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarStyle: { display: "none" }, // ← OCULTA as abas globalmente
-        headerShown: true, // ← PERMITE header (vai aplicar abaixo por tela)
-      }}
+      screenOptions={({ route }) => ({
+        tabBarStyle: { display: "none" }, // oculta tabs
+        headerShown: route.name === "index", // header somente no index
+        header:
+          route.name === "index"
+            ? () => <CustomHeader color={Colors[colorScheme ?? "light"].text} />
+            : undefined,
+      })}
     >
-      {/* ← TELA INDEX COM HEADER PERSONALIZADO */}
-      <Tabs.Screen
-        name="index"
-        options={{
-          header: () => (
-            <CustomHeader color={Colors[colorScheme ?? "light"].text} />
-          ),
-        }}
-      />
-
-      {/* ← TELA CATEGORIES SEM HEADER */}
+      <Tabs.Screen name="index" />
       <Tabs.Screen
         name="categories"
         options={{
-          headerShown: false, // ← explicitamente oculta
+          headerShown: false, // garante header oculto aqui
         }}
       />
-
-      {/* ← TELA DESSERT SEM TAB E SEM HEADER */}
       <Tabs.Screen
         name="dessert"
         options={{
           href: null,
-          headerShown: false,
+          headerShown: false, // também oculta header aqui
         }}
       />
     </Tabs>
   );
 }
+
+
