@@ -1,30 +1,17 @@
 //talkpal/app/(tabs)/categories.tsx
+// talkpal/app/(tabs)/categories.tsx
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import * as Speech from 'expo-speech';
-import { useRouter} from 'expo-router';
+import { useRouter } from 'expo-router';
 import { usePhraseStore } from '../../store/phraseStore';
-import FraseBarra from '@/components/FraseBarra'; // ✅ Importado
+import FraseBarra from '@/components/FraseBarra';
+import BackButton from '../../components/BackButton';
 
 interface Categoria {
   nome: string;
   imagem: any;
 }
-
-// Definindo as rotas válidas do app
-type Routes =
-  | '/acoes'
-  | '/foods'
-  | '/school'
-  | '/sentimentos'
-  | '/feelings'
-  | '/'
-  | '/categories'
-  | '/toysGames' // ✅ Incluír essa rota
-  | '/places/'
-  | 'houseRoutine'
-  |'/dessert';
-
 
 const categorias: Categoria[] = [
   { nome: 'EU', imagem: require('../../assets/images/category/eu.png') },
@@ -41,7 +28,7 @@ const categorias: Categoria[] = [
 
 const CategoriesScreen: React.FC = () => {
   const router = useRouter();
-  const { addWord, phrase } = usePhraseStore();
+  const { addWord } = usePhraseStore();
 
   const falarTexto = (texto: string) => {
     if (typeof texto === 'string') {
@@ -53,62 +40,60 @@ const CategoriesScreen: React.FC = () => {
     }
   };
 
-  const handleCategoryClick = (catNome: string, nextRoute: string) => {
-    if (catNome === 'EU') {
-      addWord(catNome);
+  const handleCategoryClick = (nome: string, nextRoute: string) => {
+    if (nome === 'EU') {
+      addWord(nome);
     }
-    falarTexto(catNome);
+    falarTexto(nome);
     setTimeout(() => {
-      router.push(nextRoute as any)    ;
+      router.push(nextRoute as any);
     }, 1000);
   };
 
   return (
     <View style={styles.container}>
-       {/* ✅ Botão Voltar */}
-    <View style={styles.header}>
-      <TouchableOpacity onPress={() => router.replace('/')}>
-        <Text style={styles.backText}>⬅ Voltar</Text>
-      </TouchableOpacity>
-    </View>
-      {/* ✅ Frase completa com botão de falar e apagar */}
+      <BackButton destino="/" />
       <FraseBarra />
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {categorias.map((cat, index) => (
+      {/* ✅ FlatList no lugar do ScrollView */}
+      <FlatList
+        data={categorias}
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={2} // ✅ Garante 2 colunas
+        contentContainerStyle={styles.scrollContainer}
+        renderItem={({ item }) => (
           <TouchableOpacity
-            key={index}
             style={styles.card}
             onPress={() => {
-              if (cat.nome === 'AÇÕES') {
-                handleCategoryClick(cat.nome, '/acoes');
-              } else if (cat.nome === 'ALIMENTOS') {
-                handleCategoryClick(cat.nome, '/foods');
-              } else if (cat.nome === 'ESCOLA'){
-                handleCategoryClick(cat.nome, '/school')
-              } else if (cat.nome === 'SENTIMENTOS') {
-                handleCategoryClick(cat.nome, '/feelings');
-              } else if(cat.nome==='JOGOS e BRINQUEDOS'){
-                handleCategoryClick(cat.nome, '/toysGames'); // ✅ Aqui está o bloco que você pediu
-              }else if(cat.nome==='LUGARES'){
-              handleCategoryClick(cat.nome,'/places/');
-              } else if(cat.nome==='ROTINAS CASA'){
-                handleCategoryClick(cat.nome,'/houseRoutine');
-              } else if(cat.nome==='SOBREMESA'){
-                handleCategoryClick(cat.nome,'/dessert');
-              }else if (cat.nome === 'EU') {
-                addWord(cat.nome);
-                falarTexto(cat.nome);
+              if (item.nome === 'AÇÕES') {
+                handleCategoryClick(item.nome, '/acoes');
+              } else if (item.nome === 'ALIMENTOS') {
+                handleCategoryClick(item.nome, '/foods');
+              } else if (item.nome === 'ESCOLA') {
+                handleCategoryClick(item.nome, '/school');
+              } else if (item.nome === 'SENTIMENTOS') {
+                handleCategoryClick(item.nome, '/feelings');
+              } else if (item.nome === 'JOGOS e BRINQUEDOS') {
+                handleCategoryClick(item.nome, '/toysGames');
+              } else if (item.nome === 'LUGARES') {
+                handleCategoryClick(item.nome, '/places/');
+              } else if (item.nome === 'ROTINAS CASA') {
+                handleCategoryClick(item.nome, '/houseRoutine');
+              } else if (item.nome === 'SOBREMESA') {
+                handleCategoryClick(item.nome, '/dessert');
+              } else if (item.nome === 'EU') {
+                addWord(item.nome);
+                falarTexto(item.nome);
               } else {
-              handleCategoryClick(cat.nome, '/'); // Caminho relativo, ideal no seu caso
+                handleCategoryClick(item.nome, '/');
               }
             }}
           >
-            <Image source={cat.imagem} style={styles.image} />
-            <Text style={styles.label}>{cat.nome}</Text>
+            <Image source={item.imagem} style={styles.image} />
+            <Text style={styles.label}>{item.nome}</Text>
           </TouchableOpacity>
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 };
@@ -119,27 +104,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    padding: 16,
   },
   scrollContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    paddingBottom: 20,
     justifyContent: 'center',
-    paddingVertical: 20,
   },
   card: {
-    width: 150,
+    flex: 1,
+    maxWidth: '48%', // ✅ Ajuste fino para 2 colunas com margem
     height: 150,
     backgroundColor: '#f2f2f2',
-    margin: 10,
+    margin: 5,
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 10,
     padding: 10,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
+    shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
@@ -155,8 +137,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
   },
-
-  // ✅ Adicione estes abaixo para resolver seu erro:
   header: {
     padding: 16,
     backgroundColor: '#f0f0f0',

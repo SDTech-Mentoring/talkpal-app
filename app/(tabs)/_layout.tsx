@@ -18,6 +18,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context"; // ← ADICIONADO SafeAreaView
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import BackButton from "../../components/BackButton";
@@ -51,7 +52,7 @@ function CustomHeader({ color }: { color: string }) {
   );
 
   return (
-    <View
+   <SafeAreaView // ← ALTERADO de View para SafeAreaView
       style={[
         styles.safeAreaHeader,
         isAndroid && { paddingTop: StatusBar.currentHeight ?? 0 },
@@ -82,8 +83,7 @@ function CustomHeader({ color }: { color: string }) {
           </Pressable>
         </Link>
       </View>
-    </View>
-  );
+   </SafeAreaView>);
 }
 
 const styles = StyleSheet.create({

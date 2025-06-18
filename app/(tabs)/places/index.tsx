@@ -7,6 +7,10 @@ import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
 import BackButton from '../../../components/BackButton';
 
+function paraMaiuscula(texto: string): string {
+  return texto.toUpperCase();
+} //função para converter para maiúsculo
+
 type Place = {
   nome: string;
   imagem: any;
@@ -57,14 +61,14 @@ export default function Places() {
             style={styles.card}
             onPress={() => {
               falarTexto(item.nome);
-              addWord(item.nome);
+              addWord(paraMaiuscula(item.nome));
               setTimeout(() => {
                 router.push("/categories");
               }, 1000);
             }}
           >
             <Image source={item.imagem} style={styles.image} />
-            <Text style={styles.text}>{item.nome}</Text>
+            <Text style={styles.text}>{paraMaiuscula(item.nome)}</Text>
           </TouchableOpacity>
         )}
         numColumns={2}

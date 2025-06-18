@@ -2,7 +2,7 @@
 //  Componente genérico de botão voltar reutilizável
 
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useRouter, LinkProps } from 'expo-router'; // <-- importado Router aqui
 
 
@@ -20,27 +20,30 @@ const BackButton: React.FC<BackButtonProps> = ({ destino = '/categories' }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={handlePress}>
-      <Text style={styles.buttonText}>← VOLTAR</Text>
-    </TouchableOpacity>
+    <View style={styles.header}>
+      <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <Text style={styles.buttonText}>⬅ VOLTAR</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 export default BackButton;
-
 const styles = StyleSheet.create({
-  button: {
+  header: {
+    backgroundColor: '#f2f2f2', // ✅ Cinza igual ao fundo dos cards
     paddingHorizontal: 20,
+    paddingTop: 40,
+    paddingBottom: 10,
+  },
+  button: {
     paddingVertical: 10,
-    backgroundColor: '#eee',
-    margin: 10,
-    borderRadius: 8,
+    paddingHorizontal: 15,
     alignSelf: 'flex-start',
   },
   buttonText: {
-    fontSize: 16,
-    color: '#333',
+    fontSize: 20, // 🔼 Texto maior
+    color: '#007AFF', // Azul iOS
     fontWeight: 'bold',
-    textTransform: 'uppercase',
   },
 });
