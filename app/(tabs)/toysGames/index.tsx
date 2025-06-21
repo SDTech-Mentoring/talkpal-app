@@ -6,6 +6,8 @@ import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
 import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
+import BackButton from '../../../components/BackButton';
+
 
 type Brinquedo = {
   nome: string;
@@ -90,6 +92,7 @@ export default function JogosBrinquedos() {
 
   return (
     <View style={styles.container}>
+      <BackButton />
       <FraseBarra />
       <FlatList
         data={brinquedos}

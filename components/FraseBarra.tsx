@@ -17,7 +17,7 @@ const FraseBarra = () => {
   <View style={styles.container}>
     {phrase.length === 0 ? (
       <Text style={[styles.text, styles.placeholder]}>
-        💬 ESCOLHA UM QUADRINHO
+        💬 ESCOLHA UMA FIGURA
       </Text>
     ) : (
       <Text style={styles.text}>{phrase.join(' ')}</Text>

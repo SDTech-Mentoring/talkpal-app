@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router'; // usar useRouter do expo-router
 import { alimentos } from './foodsData';
 import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
+import BackButton from '../../../components/BackButton';
 
 const FoodsScreen: React.FC = () => {
   const { addWord } = usePhraseStore();
@@ -21,6 +22,7 @@ const FoodsScreen: React.FC = () => {
   };
   return (
     <View style={styles.container}>
+      <BackButton />
       <FraseBarra />
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>

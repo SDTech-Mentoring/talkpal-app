@@ -1,15 +1,11 @@
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
+import {View,Text,Image,FlatList,StyleSheet,TouchableOpacity,
 } from "react-native";
 import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
 import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
+import BackButton from '../../../components/BackButton';//importanto o componente backbutton
+
 
 type Acao = {
   nome: string;
@@ -101,6 +97,7 @@ export default function Acoes() {
 
   return (
     <View style={styles.container}>
+      <BackButton destino="/categories" />
       <FraseBarra />
       <FlatList
         data={acoes}
@@ -110,7 +107,7 @@ export default function Acoes() {
             style={styles.card}
             onPress={() => {
               falarTexto(item.nome);
-              addWord(item.nome);
+             addWord(item.nome.toUpperCase()); // Adiciona em maiúsculo à frase
               setTimeout(() => {
                 router.push("/categories"); // volta para categorias após 1 segundo
               }, 1000);

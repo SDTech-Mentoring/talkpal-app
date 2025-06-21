@@ -5,6 +5,7 @@ import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
 import { usePhraseStore } from "../../../store/phraseStore";
 import { useRouter } from "expo-router";
+import BackButton from '../../../components/BackButton';
 
 type Rotina = {
   nome: string;
@@ -48,6 +49,7 @@ export default function RotinasCasa() {
 
   return (
     <View style={styles.container}>
+      <BackButton />
       <FraseBarra />
       <FlatList
         data={rotinas}

@@ -5,6 +5,15 @@ import * as Speech from 'expo-speech';
 import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
 import { useRouter } from 'expo-router';  // Importa o useRouter para navegação
+import BackButton from '@/components/BackButton'; //  Importado novo botão reutilizável
+
+// export const options = {
+//   headerShown: false,  // <-- Aqui, oculta o header automaticamente
+// };
+
+function paraMaiuscula(texto: string): string {
+  return texto.toUpperCase(); //converte para maiúsculo
+}
 
 interface Item {
   nome: string;
@@ -65,19 +74,23 @@ const DessertScreen: React.FC = () => {
   };
 
   const handleClick = (item: Item) => {
-    addWord(item.nome);
-    falarTexto(item.nome);
-      // Delay de 2 segundos antes de navegar para categories
+    const textoMaiusculo = item.nome.toUpperCase(); // converte para MAIÚSCULAS
+    addWord(textoMaiusculo);                        // adiciona à frase em maiúsculo
+    falarTexto(textoMaiusculo);                     // fala em maiúsculo
     setTimeout(() => {
-      router.push('/categories');
-    }, 2000);
+    router.push('/categories');
+  }, 2000);
 
   };
 
 
   return (
     <View style={styles.container}>
+         {/* ✅ Inserido o botão BackButton no topo da tela */}
+      <BackButton destino="/categories" />
+
       <FraseBarra />
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {sobremesas.map((item, index) => (
           <TouchableOpacity
@@ -86,7 +99,8 @@ const DessertScreen: React.FC = () => {
             onPress={() => handleClick(item)}
           >
             <Image source={item.imagem} style={styles.image} />
-            <Text style={styles.label}>{item.nome}</Text>
+           <Text style={styles.label}>{paraMaiuscula(item.nome)}</Text>
+
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -130,10 +144,11 @@ const styles = StyleSheet.create({
     height: 80,
     resizeMode: 'contain',
   },
-  label: {
-    marginTop: 8,
-    fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
+ label: {
+  marginTop: 8,
+  fontSize: 16,
+  fontWeight: '600',
+  textAlign: 'center',
+  textTransform: 'uppercase', // garante visualmente MAIÚSCULAS
+},
 });

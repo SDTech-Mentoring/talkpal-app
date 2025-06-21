@@ -24,7 +24,7 @@ export default function HomeScreen() {
          style={styles.button}  // aqui era btnQuadrinhos
          activeOpacity={0.7}
 >
-  <Text style={styles.buttonText}>QUADRINHO</Text>
+  <Text style={styles.buttonText}>ENTRAR</Text>
 </TouchableOpacity>
 
       </View>
