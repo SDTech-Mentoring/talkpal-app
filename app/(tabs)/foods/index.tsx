@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Image, ScrollView, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import * as Speech from 'expo-speech';
 import { useRouter } from 'expo-router'; // usar useRouter do expo-router
-import { alimentos } from './foodsData';
+import { alimentos } from '../../../data/_foodsData';
 import { usePhraseStore } from '../../../store/phraseStore';
 import FraseBarra from '@/components/FraseBarra';
 import BackButton from '../../../components/BackButton';
