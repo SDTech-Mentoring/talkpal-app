@@ -22,8 +22,8 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.seunome.talkpal",
-      "permissions": [],
+      "package": "com.talkpal.app",
+      "googleServicesFile": "./google-services.json",
       "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
@@ -36,6 +36,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3c3966b7-5843-4151-b65b-6eccc4f58f42"
+      }
     }
   }
 }

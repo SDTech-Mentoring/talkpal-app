@@ -4,8 +4,6 @@
 // talkPal/app/(tabs)/_layout.tsx
 // talkPal/app/(tabs)/_layout.tsx
 // talkPal/app/(tabs)/_layout.tsx
-
-// talkPal/app/(tabs)/_layout.tsx
 import React from "react";
 import { enableScreens } from "react-native-screens";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -18,7 +16,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context"; // ← ADICIONADO SafeAreaView
+import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import BackButton from "../../components/BackButton";
@@ -52,7 +50,7 @@ function CustomHeader({ color }: { color: string }) {
   );
 
   return (
-   <SafeAreaView // ← ALTERADO de View para SafeAreaView
+    <SafeAreaView
       style={[
         styles.safeAreaHeader,
         isAndroid && { paddingTop: StatusBar.currentHeight ?? 0 },
@@ -83,7 +81,8 @@ function CustomHeader({ color }: { color: string }) {
           </Pressable>
         </Link>
       </View>
-   </SafeAreaView>);
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -123,11 +122,13 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={({ route }) => ({
-        tabBarStyle: { display: "none" }, // oculta tabs
-        headerShown: route.name === "index", // header somente no index
+        tabBarStyle: { display: "none" },
+        headerShown: route.name === "index",
         header:
           route.name === "index"
-            ? () => <CustomHeader color={Colors[colorScheme ?? "light"].text} />
+            ? () => (
+                <CustomHeader color={Colors[colorScheme ?? "light"].text} />
+              )
             : undefined,
       })}
     >
@@ -135,18 +136,16 @@ export default function TabLayout() {
       <Tabs.Screen
         name="categories"
         options={{
-          headerShown: false, // garante header oculto aqui
+          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="dessert"
         options={{
           href: null,
-          headerShown: false, // também oculta header aqui
+          headerShown: false,
         }}
       />
     </Tabs>
   );
 }
-
-

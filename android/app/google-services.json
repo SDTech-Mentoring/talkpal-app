@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "432433104323",
+    "project_id": "talkpal-458a3",
+    "storage_bucket": "talkpal-458a3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432433104323:android:ed42cd005e8c84578ea976",
+        "android_client_info": {
+          "package_name": "com.talkpal.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnmazMCjMw00vQ7gFLYFwORAQJ9ER27Vk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
