@@ -26,9 +26,6 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# Bloqueio para yarn (usar apenas npm)
-yarn.lock
-
 # macOS
 .DS_Store
 *.pem
@@ -38,3 +35,5 @@ yarn.lock
 
 # typescript
 *.tsbuildinfo
+
+app-example
