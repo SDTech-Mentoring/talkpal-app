@@ -4,8 +4,6 @@
 // talkPal/app/(tabs)/_layout.tsx
 // talkPal/app/(tabs)/_layout.tsx
 // talkPal/app/(tabs)/_layout.tsx
-
-// talkPal/app/(tabs)/_layout.tsx
 import React from "react";
 import { enableScreens } from "react-native-screens";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -16,12 +14,13 @@ import {
   View,
   StyleSheet,
   Platform,
-  StatusBar,
+  StatusBar as RNStatusBar,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context"; // ← ADICIONADO SafeAreaView
+import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "@/constants/Colors";
-import { useColorScheme } from "@/components/useColorScheme";
-import BackButton from "../../components/BackButton";
+// ⚠️ Use o hook do Expo, não um hook customizado, para testar:
+import { useColorScheme } from "react-native";
+/// import BackButton from "../../components/BackButton"; // <-- Comente para testar
 
 enableScreens();
 
@@ -52,13 +51,14 @@ function CustomHeader({ color }: { color: string }) {
   );
 
   return (
-   <SafeAreaView // ← ALTERADO de View para SafeAreaView
+    <SafeAreaView
       style={[
         styles.safeAreaHeader,
-        isAndroid && { paddingTop: StatusBar.currentHeight ?? 0 },
+        isAndroid && { paddingTop: RNStatusBar.currentHeight ?? 0 },
       ]}
     >
-      {showBackButton && <BackButton />}
+      {/* {showBackButton && <BackButton />} */}
+      {showBackButton && <Text>Back</Text>}
 
       <View style={styles.header}>
         <Link href="/categories" asChild>
@@ -83,7 +83,8 @@ function CustomHeader({ color }: { color: string }) {
           </Pressable>
         </Link>
       </View>
-   </SafeAreaView>);
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -118,16 +119,21 @@ const styles = StyleSheet.create({
 });
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme?.() ?? "light";
+  // Ajuste para evitar erro se for undefined
 
   return (
     <Tabs
       screenOptions={({ route }) => ({
         tabBarStyle: { display: "none" }, // oculta tabs
-        headerShown: route.name === "index", // header somente no index
+        headerShown: route.name === "index",
         header:
           route.name === "index"
-            ? () => <CustomHeader color={Colors[colorScheme ?? "light"].text} />
+            ? () => (
+                <CustomHeader
+                  color={Colors[colorScheme]?.text ?? "#222"}
+                />
+              )
             : undefined,
       })}
     >
@@ -135,18 +141,16 @@ export default function TabLayout() {
       <Tabs.Screen
         name="categories"
         options={{
-          headerShown: false, // garante header oculto aqui
+          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="dessert"
         options={{
           href: null,
-          headerShown: false, // também oculta header aqui
+          headerShown: false,
         }}
       />
     </Tabs>
   );
 }
-
-

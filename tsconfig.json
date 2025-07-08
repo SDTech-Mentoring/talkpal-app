@@ -1,16 +1,19 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "./node_modules/expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",              // Aponta para a raiz do projeto
+    "jsx": "react-native",
+    "baseUrl": ".",
+    "allowJs": true,
+    "esModuleInterop": true,
     "paths": {
-      "@/*": ["./*"],            // Mapeia '@/...' para qualquer arquivo na raiz do projeto
-      "@/constants/*": ["./constants/*"] // Mapeia especificamente para a pasta 'constants'
+      "@/*": ["./*"],
+      "@/constants/*": ["./constants/*"]
     }
   },
   "include": [
-    "app/**/*.ts",
-    "app/**/*.tsx",
+    "**/*.ts",
+    "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]
