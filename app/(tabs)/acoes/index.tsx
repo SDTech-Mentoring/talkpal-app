@@ -3,6 +3,7 @@ import {View,Text,Image,FlatList,StyleSheet,TouchableOpacity,
 import * as Speech from "expo-speech";
 import FraseBarra from "@/components/FraseBarra";
 import { usePhraseStore } from "../../../store/phraseStore";
+
 import { useRouter } from "expo-router";
 import BackButton from '../../../components/BackButton';//importanto o componente backbutton
 
@@ -83,6 +84,8 @@ const acoes: Acao[] = [
 
 export default function Acoes() {
   const { addWord } = usePhraseStore();
+
+
   const router = useRouter();
 
   const falarTexto = (texto: string) => {

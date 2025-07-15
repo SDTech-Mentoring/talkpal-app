@@ -13,7 +13,7 @@ import { FraseProvider } from './context/FraseContext'; // ✅ Contexto
 export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(tabs)',
+  initialRouteName: 'auth/login',
 };
 
 // Impede a splash screen de sumir automaticamente
@@ -53,17 +53,20 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        {/* Página principal com abas ocultando o cabeçalho */}
+        {/* Tela de login */}
+        <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+
+        {/* Página principal com abas */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-        {/* Página modal com botão de voltar e sem título "modal" */}
+        {/* Página modal */}
         <Stack.Screen
           name="modal"
           options={{
             presentation: 'modal',
             headerShown: true,
-            headerBackTitle: 'Voltar', // ✅ texto ao lado da seta
-            title: '', // ✅ remove a palavra "modal"
+            headerBackTitle: 'Voltar',
+            title: '',
           }}
         />
       </Stack>
