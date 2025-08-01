@@ -1,13 +1,16 @@
 // talkPal/app/(tabs)/index.tsx
 // talkPal/app/(tabs)/index.tsx
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import FraseBarra from '@/components/FraseBarra';
 
+
 export default function HomeScreen() {
   const router = useRouter();
+
+
 
   return (
     <View style={styles.container}>
@@ -20,13 +23,12 @@ export default function HomeScreen() {
 
         {/* Botão que navega para ações */}
         <TouchableOpacity
-        onPress={() => router.push('/(tabs)/categories')}
-         style={styles.button}  // aqui era btnQuadrinhos
-         activeOpacity={0.7}
->
-  <Text style={styles.buttonText}>ENTRAR</Text>
-</TouchableOpacity>
-
+          onPress={() => router.push('/(tabs)/categories')}
+          style={styles.button}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.buttonText}>ENTRAR</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -35,7 +37,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',  // Adicione para sombra funcionar no iOS
+    backgroundColor: '#fff',
   },
   content: {
     flex: 1,
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
-    elevation: 4,  // aumente para sombra mais visível no Android
+    elevation: 4,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
